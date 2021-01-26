@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import model_selection, preprocessing, metrics ensemble
 
 filename= 'botsinthenet.pkl'
-clf_entropy= pickle.load(open(filename, 'rb'))
+LogReg= pickle.load(open(filename, 'rb'))
 vectorizer= pickle.load(open('transform.pkl', 'rb'))
 
 app= Flask(__name__)
@@ -21,7 +21,7 @@ def predict():
         message=request.form['message']
         data= [message]
         tvc = vectorizer.transform(data).toarray()
-        pred = clf_entropy(tvc)
+        pred = LogReg(tvc)
     return render_template('web.html', prediction=pred)
 
 
