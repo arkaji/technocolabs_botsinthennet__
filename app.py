@@ -20,8 +20,8 @@ def predict():
     if request.method=='POST':
         message=request.form['message']
         data= [message]
-        tvc = vectorizer.transform(data).toarray()
-        pred = LogReg(tvc)
+        log = vectorizer.transform(data).toarray()
+        pred = LogReg(log)
     return render_template('web.html', prediction=pred)
 
 
